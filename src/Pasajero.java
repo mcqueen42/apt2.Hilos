@@ -1,5 +1,4 @@
 public class Pasajero {
-
     private int id;
     private int prioridad;
 
@@ -12,23 +11,15 @@ public class Pasajero {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getPrioridad() {
         return prioridad;
-    }
-
-    public void setPrioridad(int prioridad) {
-        this.prioridad = prioridad;
     }
 
     @Override
     public String toString() {
         return "Pasajero{" +
-                "id='" + id + '\'' +
-                ", prioridad='" + prioridad + '\'' +
+                "id=" + id +
+                ", prioridad=" + prioridad +
                 '}';
     }
 }
