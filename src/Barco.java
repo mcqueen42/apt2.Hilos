@@ -5,7 +5,7 @@ import java.util.concurrent.Semaphore;
 public class Barco {
 
     private final List<Pasajero> pasajeros = new ArrayList<>();
-    private final Semaphore semaforo = new Semaphore(1);
+    private final Semaphore semaforos = new Semaphore(1);
 
     public Barco(List<Pasajero> pasajeros) {
         this.pasajeros.addAll(pasajeros);
@@ -13,13 +13,13 @@ public class Barco {
 
     public boolean hayPasajeros() {
         try {
-            semaforo.acquire();
+            semaforos.acquire();
             return !pasajeros.isEmpty();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             return false;
         } finally {
-            semaforo.release();
+            semaforos.release();
         }
     }
 
@@ -27,7 +27,7 @@ public class Barco {
         List<Pasajero> recogidos = new ArrayList<>(capacidad);
 
         try {
-            semaforo.acquire();
+            semaforos.acquire();
 
             if (pasajeros.isEmpty()) {
                 return recogidos;
@@ -50,7 +50,7 @@ public class Barco {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         } finally {
-            semaforo.release();
+            semaforos.release();
         }
 
         return recogidos;
@@ -58,13 +58,13 @@ public class Barco {
 
     public int pasajerosRestantes() {
         try {
-            semaforo.acquire();
+            semaforos.acquire();
             return pasajeros.size();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             return 0;
         } finally {
-            semaforo.release();
+            semaforos.release();
         }
     }
 }
