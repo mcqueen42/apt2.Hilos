@@ -12,7 +12,7 @@ public class Barco {
     }
 
     public boolean hayPasajeros() {
-        try {
+        try{
             semaforos.acquire();
             return !pasajeros.isEmpty();
         } catch (InterruptedException e) {
